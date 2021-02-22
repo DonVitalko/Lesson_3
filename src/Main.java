@@ -27,8 +27,8 @@ public class Main {
         while (attempt<3){
             int numberUser = readIntegerFromConsole();
             if (randomize == numberUser) {
-                System.out.println("Вы угадали. Поздравляю! Желаете ли попробывать еще раз? 1-да, 2-нет");
-                newAttempt();
+                System.out.println("Вы угадали. Поздравляю! Желаете ли попробывать еще раз? 1:да, 0:нет");
+                attemptNumber();
             } else if (randomize > numberUser) {
                 attempt += 1;
                 System.out.println("Загаданое число больше.");
@@ -38,16 +38,22 @@ public class Main {
             }
         }
 
-        System.out.println("Вы проиграли! Я загадал число " + randomize + ". Попробуете еще раз? 1-да, 2-нет");
-        newAttempt();
+        System.out.println("Вы проиграли! Я загадал число " + randomize + ".");
+        attemptNumber();
         }
-        static void newAttempt(){
-            Scanner sc = new Scanner(System.in);
-            int x=sc.nextInt();
-            if(x==1){
-                guessNumber();
-                sc.close();
-            }
+        static void attemptNumber() {
+            int x;
+            do {
+                x = readIntegerFromConsole();
+                System.out.println("Желаете ли попробывать еще раз? 1:да, 0:нет");
+                if (x == 1) {
+
+                    guessNumber();
+                }
+                else if(x == 0){
+                System.out.println("Как пожелаете. До свидания!");
+                }
+            } while (x < 0 || x > 1);
         }
         static int readIntegerFromConsole(){
             Scanner sc = new Scanner(System.in);
@@ -76,7 +82,7 @@ public class Main {
             Scanner sc = new Scanner(System.in);
             userFruit = sc.nextLine();
             if (userFruit.equals(conceived)) {
-                System.out.println("Поздравляю, Вы победили! Желаете ли попробывать еще раз? 1-да, 2-нет");
+                System.out.println("Поздравляю, Вы победили!");
                 attemptFruit();
             } else {
                 comparison(userFruit, conceived);
@@ -99,12 +105,18 @@ public class Main {
         System.out.println("Игра начинается!");
     }
     static void attemptFruit(){
-            Scanner sc = new Scanner(System.in);
-            int x=sc.nextInt();
-            if(x==1){
+        int x;
+        do {
+            x = readIntegerFromConsole();
+            System.out.println("Желаете ли попробывать еще раз? 1:да, 0:нет");
+            if (x == 1) {
+
                 guessFruit();
-                sc.close();
             }
+            else if(x == 0){
+                System.out.println("Как пожелаете. До свидания!");
+            }
+        } while (x < 0 || x > 1);
         }
     }
 
